@@ -19,6 +19,10 @@ Panduan ini dibuat untuk membantu engineer dari level **junior hingga senior** a
 * Menjaga keamanan data & credential
 * Tetap mengikuti standar project
 
+
+> ⚠️ Catatan: Repository ini saat ini disusun dengan konteks Java (Spring Boot).
+> Jika digunakan oleh programmer dengan bahasa lain, silakan sesuaikan AGENTS.md
+
 ---
 
 
