@@ -8,8 +8,8 @@ File ini adalah **Ground Truth (Single Source of Truth)** yang **WAJIB DIPATUHI*
 
 ## Project Context
 
-* **Project Name:** `Cakra Workflow Service`
-* **Role:** `Backend service untuk orkestrasi ETL pipeline yang menjalankan Ansible Playbook.`
+* **Project Name:** `UNEM Reference API`
+* **Role:** `UNEM Reference REST API`
 
 ## Architectural Consistency
 
@@ -53,11 +53,10 @@ File ini adalah **Ground Truth (Single Source of Truth)** yang **WAJIB DIPATUHI*
 * Gunakan:
 
   * `application-dev.properties`
-  * `application-prod.properties`
+  * `application-rke.properties`
 
 ### STRICT RULE
 
-* ❌ DILARANG KERAS mengubah `-prod.properties` tanpa izin eksplisit
 * ✅ Gunakan `-dev` untuk development
 
 ### Property Injection
@@ -89,7 +88,7 @@ File ini adalah **Ground Truth (Single Source of Truth)** yang **WAJIB DIPATUHI*
 
 ## Response Format
 
-* Gunakan standar: `ApiResponse<T>`
+* Gunakan standar: `ApiResult<T>`
 
 ### Exceptions (HARUS KONFIRMASI)
 
@@ -107,31 +106,6 @@ File ini adalah **Ground Truth (Single Source of Truth)** yang **WAJIB DIPATUHI*
 ---
 
 # 4. AI Assistant Execution SOP
-
-## Skill Auto-Load (WAJIB di Setiap Awal Sesi)
-
-* **DI AWAL SETIAP SESI**, sebelum melakukan apapun, AI WAJIB:
-  1. Baca semua file `.agents/skills/*/SKILL.md` yang ada di project ini
-  2. Pelajari field `name` dan `description` tiap skill
-  3. Simpan dalam context aktif sebagai **available skills**
-
-* Setelah skill di-load, AI akan **otomatis mengenali intent user** dan mengeksekusi skill yang sesuai tanpa perlu user menyebut nama skill secara eksplisit.
-
-* **Contoh matching:**
-
-  | User berkata | Skill yang dijalankan |
-  |---|---|
-  | "mau planning fitur baru" | `planning` |
-  | "buatkan impl plan untuk ISSUE-003" | `impl-plan` |
-  | "mulai coding task T1" | `preflight` → `implement` |
-  | "review kode yang tadi" | `review` |
-  | "wrap up sesi hari ini" | `wrap-session` |
-
-* ❌ DILARANG menunggu user menyebut nama skill secara eksplisit
-* ❌ DILARANG mengabaikan skill yang tersedia jika intent user cocok
-* ✅ Jika ragu skill mana yang cocok, tanyakan ke user — jangan tebak
-
----
 
 ## Exploration First
 
@@ -317,7 +291,6 @@ Prioritas:
 
 * ❌ Jangan execute command tanpa review
 
-* ❌ Jangan ubah prod config
 
 * ❌ Jangan over-scope perubahan
 
