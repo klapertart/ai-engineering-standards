@@ -8,8 +8,8 @@ File ini adalah **Ground Truth (Single Source of Truth)** yang **WAJIB DIPATUHI*
 
 ## Project Context
 
-* **Project Name:** `<project-name>`
-* **Role:** `<project-description>`
+* **Project Name:** `Cakra Workflow Service`
+* **Role:** `Backend service untuk orkestrasi ETL pipeline yang menjalankan Ansible Playbook.`
 
 ## Architectural Consistency
 
@@ -24,7 +24,7 @@ File ini adalah **Ground Truth (Single Source of Truth)** yang **WAJIB DIPATUHI*
 
 ## Common Module Usage
 
-* WAJIB menggunakan `<common-module-name>` untuk:
+* WAJIB menggunakan `cakra-common-lib` untuk:
 
   * Logging
   * Response Wrapper
@@ -107,6 +107,31 @@ File ini adalah **Ground Truth (Single Source of Truth)** yang **WAJIB DIPATUHI*
 ---
 
 # 4. AI Assistant Execution SOP
+
+## Skill Auto-Load (WAJIB di Setiap Awal Sesi)
+
+* **DI AWAL SETIAP SESI**, sebelum melakukan apapun, AI WAJIB:
+  1. Baca semua file `.agents/skills/*/SKILL.md` yang ada di project ini
+  2. Pelajari field `name` dan `description` tiap skill
+  3. Simpan dalam context aktif sebagai **available skills**
+
+* Setelah skill di-load, AI akan **otomatis mengenali intent user** dan mengeksekusi skill yang sesuai tanpa perlu user menyebut nama skill secara eksplisit.
+
+* **Contoh matching:**
+
+  | User berkata | Skill yang dijalankan |
+  |---|---|
+  | "mau planning fitur baru" | `planning` |
+  | "buatkan impl plan untuk ISSUE-003" | `impl-plan` |
+  | "mulai coding task T1" | `preflight` → `implement` |
+  | "review kode yang tadi" | `review` |
+  | "wrap up sesi hari ini" | `wrap-session` |
+
+* ❌ DILARANG menunggu user menyebut nama skill secara eksplisit
+* ❌ DILARANG mengabaikan skill yang tersedia jika intent user cocok
+* ✅ Jika ragu skill mana yang cocok, tanyakan ke user — jangan tebak
+
+---
 
 ## Exploration First
 
